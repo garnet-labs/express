@@ -1,0 +1,64 @@
+name: Examples Tests
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - '4.x'
+  pull_request:
+    branches:
+      - master
+      - develop
+      - '4.x'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+    strategy:
+      matrix:
+        example:
+          - auth
+          - content-negotiation
+          - cookie-sessions
+          - cookies
+          - downloads
+          - error
+          - error-pages
+          - hello-world
+          - markdown
+          - multi-router
+          - mvc
+          - online
+          - params
+          - resource
+          - route-map
+          - route-middleware
+          - route-separation
+          - search
+          - session
+          - static-files
+          - view-constructor
+          - view-locals
+          - web-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - uses: garnet-org/action@v2
+        with:
+          api_token: ${{ secrets.GARNET_API_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: npm install
+        run: npm install
+        working-directory: examples/${{ matrix.example }}
+      - name: npm test
+        run: npm test
+        working-directory: examples/${{ matrix.example }}
