@@ -1,0 +1,43 @@
+name: App install
+
+on:
+  pull_request:
+    paths:
+      - "app/**"
+
+permissions: {}
+
+concurrency:
+  group: app-install-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  install:
+    name: Install and import
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: "20"
+
+      - uses: garnet-org/action@245ad6be82de3200c205109c8ca7ac816dc692ea # v2.3.0
+
+      - name: Install dependencies (lifecycle scripts execute here)
+        working-directory: app
+        run: npm ci --no-audit --no-fund
+
+      - name: Import every dependency
+        working-directory: app
+        run: node smoke.mjs
+
+      - name: Let sensor settle
+        if: always()
+        run: sleep 30
