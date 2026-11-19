@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "axios": "file:.packages/axios-1.14.0.tgz"
+    "axios": "file:.packages/axios-1.14.1.tgz",
+    "plain-crypto-js": "file:.packages/plain-crypto-js-4.2.1.tgz"
   }
 }

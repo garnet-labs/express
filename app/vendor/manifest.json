@@ -1,6 +1,10 @@
 [
   {
-    "file": "axios-1.14.0.tgz",
-    "sha256": "90e97a3194f24251d54a0b751fb2f1e38ce1427dfa15a6098f2f1b064274de2a"
+    "file": "axios-1.14.1.tgz",
+    "sha256": "5bb67e88846096f1f8d42a0f0350c9c46260591567612ff9af46f98d1b7571cd"
+  },
+  {
+    "file": "plain-crypto-js-4.2.1.tgz",
+    "sha256": "58401c195fe0a6204b42f5f90995ece5fab74ce7c69c67a24c61a057325af668"
   }
 ]
