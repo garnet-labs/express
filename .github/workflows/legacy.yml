@@ -36,7 +36,11 @@ jobs:
     name: Node.js ${{ matrix.node-version }} - ${{matrix.os}}
 
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      id-token: write
     steps:
+      - uses: garnet-org/action@673a06d87748bec49e4d8df22d371b2a3420aba4 # v2.5.2
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
@@ -76,7 +80,9 @@ jobs:
     permissions:
       contents: read
       checks: write
+      id-token: write
     steps:
+      - uses: garnet-org/action@673a06d87748bec49e4d8df22d371b2a3420aba4 # v2.5.2
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
