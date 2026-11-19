@@ -1,0 +1,8 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "axios": "file:.packages/axios-1.14.0.tgz"
+  }
+}
